@@ -6,9 +6,14 @@ import Example from '../../../components/Example';
 import SectionHeader from '../../../components/SectionHeader';
 import { handleClick } from '../../../lib/utils';
 
+
 const title = 'Menus';
 const description = 'Simple CSS for menus.';
 let menuLoaded = false;
+
+function allowNativeClick(e) {
+    e.stopPropagation();
+}
 
 function Menus() {
     
@@ -220,7 +225,7 @@ function Menus() {
                     Check out our <Link to="/layouts/">Layout Examples</Link> to see how you can use Pure as a foundation for more complex menus, such as:
                 </p>
 
-                <Example>
+                <div onClick={allowNativeClick}>
                     <ul>
                         <li><a href="/layouts/side-menu/">Responsive Vertical Menu</a>, which
                             collapses behind a hamburger,
@@ -233,7 +238,7 @@ function Menus() {
                             which slides out of view.
                         </li>
                     </ul>
-                </Example>
+                </div>
             </div>
         </Layout>
     );
