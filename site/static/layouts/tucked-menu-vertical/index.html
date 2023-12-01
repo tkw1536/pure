@@ -116,13 +116,14 @@
 <script>
 (function (window, document) {
 var menu = document.getElementById('menu'),
+    toggle = document.getElementById('toggle'),
     rollback,
     WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
 
 function toggleHorizontal() {
     menu.classList.remove('closing');
     [].forEach.call(
-        document.getElementById('menu').querySelectorAll('.custom-can-transform'),
+        menu.querySelectorAll('.custom-can-transform'),
         function(el){
             el.classList.toggle('pure-menu-horizontal');
         }
@@ -134,17 +135,17 @@ function toggleMenu() {
     // before the menu switches states
     if (menu.classList.contains('open')) {
         menu.classList.add('closing');
-        rollBack = setTimeout(toggleHorizontal, 500);
+        rollback = setTimeout(toggleHorizontal, 500);
     }
     else {
         if (menu.classList.contains('closing')) {
-            clearTimeout(rollBack);
+            clearTimeout(rollback);
         } else {
             toggleHorizontal();
         }
     }
     menu.classList.toggle('open');
-    document.getElementById('toggle').classList.toggle('x');
+    toggle.classList.toggle('x');
 };
 
 function closeMenu() {
@@ -153,7 +154,7 @@ function closeMenu() {
     }
 }
 
-document.getElementById('toggle').addEventListener('click', function (e) {
+toggle.addEventListener('click', function (e) {
     toggleMenu();
     e.preventDefault();
 });
@@ -289,13 +290,14 @@ window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
       &lt;script&gt;
       (function (window, document) {
       var menu &#x3D; document.getElementById(&#x27;menu&#x27;),
+          toggle &#x3D; document.getElementById(&#x27;toggle&#x27;),
           rollback,
           WINDOW_CHANGE_EVENT &#x3D; (&#x27;onorientationchange&#x27; in window) ? &#x27;orientationchange&#x27;:&#x27;resize&#x27;;
 
       function toggleHorizontal() {
           menu.classList.remove(&#x27;closing&#x27;);
           [].forEach.call(
-              document.getElementById(&#x27;menu&#x27;).querySelectorAll(&#x27;.custom-can-transform&#x27;),
+              menu.querySelectorAll(&#x27;.custom-can-transform&#x27;),
               function(el){
                   el.classList.toggle(&#x27;pure-menu-horizontal&#x27;);
               }
@@ -307,17 +309,17 @@ window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
           // before the menu switches states
           if (menu.classList.contains(&#x27;open&#x27;)) {
               menu.classList.add(&#x27;closing&#x27;);
-              rollBack &#x3D; setTimeout(toggleHorizontal, 500);
+              rollback &#x3D; setTimeout(toggleHorizontal, 500);
           }
           else {
               if (menu.classList.contains(&#x27;closing&#x27;)) {
-                  clearTimeout(rollBack);
+                  clearTimeout(rollback);
               } else {
                   toggleHorizontal();
               }
           }
           menu.classList.toggle(&#x27;open&#x27;);
-          document.getElementById(&#x27;toggle&#x27;).classList.toggle(&#x27;x&#x27;);
+          toggle.classList.toggle(&#x27;x&#x27;);
       };
 
       function closeMenu() {
@@ -326,7 +328,7 @@ window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
           }
       }
 
-      document.getElementById(&#x27;toggle&#x27;).addEventListener(&#x27;click&#x27;, function (e) {
+      toggle.addEventListener(&#x27;click&#x27;, function (e) {
           toggleMenu();
           e.preventDefault();
       });
